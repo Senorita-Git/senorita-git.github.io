@@ -7,6 +7,8 @@
 - Обычный HTML и CSS, без фреймворков, сборщиков и библиотек. JS только свой, в `script.js` (переключатель языков).
 - `index.html` — страница, `styles.css` — все стили, `script.js` — переводы, `images/` — картинки.
 - Пути к файлам всегда относительные (`styles.css`, `images/yulia.webp`), без `/` в начале и без абсолютных адресов.
+  Единственное исключение — `og:image`: мессенджеры требуют полный адрес `https://senorita-git.github.io/...`.
+- Сайт опубликован через GitHub Pages: https://senorita-git.github.io (репозиторий `Senorita-Git/senorita-git.github.io`, ветка `main`).
 
 ## Цвета
 Задавай только через переменные из `:root` в `styles.css`, новые цвета не придумывай.
