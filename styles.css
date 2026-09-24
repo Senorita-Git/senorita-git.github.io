@@ -219,6 +219,109 @@ img { display: block; max-width: 100%; }
   line-height: 1.25;
 }
 
+/* ===== Разделитель ===== */
+.divider {
+  width: calc(min(100%, var(--container)) - 2 * var(--edge));
+  margin: 0 auto;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+/* ===== Что я умею ===== */
+.skills__inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: clamp(88px, 11vw, 152px) var(--edge);
+}
+
+.skills__list {
+  margin: 56px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 48px;
+}
+
+.skill {
+  padding: 4px 32px 8px;
+  border-left: 1px solid var(--line);
+}
+
+.skill__num {
+  display: block;
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--gold);
+}
+
+.skill__title {
+  margin-top: 28px;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+@media (max-width: 899px) {
+  .skills__list { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 479px) {
+  .skills__list { grid-template-columns: 1fr; }
+}
+
+/* ===== Проекты ===== */
+.works__inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: clamp(88px, 11vw, 152px) var(--edge);
+}
+
+.works__list {
+  margin: 56px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.card__cover {
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: flex-end;
+  padding: 24px 28px;
+  border-bottom: 1px solid var(--line);
+}
+.card__cover--1 { background: var(--pistachio); }
+.card__cover--2 { background: var(--yellow); }
+.card__cover--3 { background: var(--olive); }
+
+.card__num {
+  font-family: var(--serif);
+  font-size: 56px;
+  line-height: 1;
+  color: rgba(55, 72, 45, .55);
+}
+
+.card__text {
+  padding: 24px 28px 28px;
+  font-size: 15px;
+  color: var(--text-72);
+}
+
+@media (max-width: 719px) {
+  .works__list { grid-template-columns: 1fr; }
+}
+
 /* ===== Телефон ===== */
 @media (max-width: 600px) {
   .header__inner {
@@ -261,4 +364,31 @@ img { display: block; max-width: 100%; }
     aspect-ratio: 4 / 5;
   }
   .about__body { margin-top: 20px; font-size: 28px; }
+
+  .divider { width: calc(100% - 40px); }
+
+  .skills__inner { padding: 80px 20px; }
+  .skills__list {
+    margin-top: 32px;
+    grid-template-columns: 1fr;
+    row-gap: 0;
+  }
+  .skill {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 12px;
+    padding: 24px 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .skill__title { margin-top: 0; }
+
+  .works__inner { padding: 80px 20px; }
+  .works__list { margin-top: 32px; gap: 20px; }
+  .card__cover {
+    aspect-ratio: 16 / 7;
+    padding: 20px 24px;
+  }
+  .card__num { font-size: 48px; }
+  .card__text { padding: 20px 24px 24px; }
 }
