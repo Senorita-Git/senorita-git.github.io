@@ -1,0 +1,210 @@
+/* ===== Переменные ===== */
+:root {
+  --bg: #F7F8EF;
+  --pistachio: #E0ECC8;
+  --pistachio-press: #D0DEB3;
+  --green: #37482D;
+  --yellow: #FBF1C7;
+  --card: #FCFCF8;
+  --olive: #EDEECF;
+  --text: #201F1D;
+  --text-65: rgba(32, 31, 29, .65);
+  --text-60: rgba(32, 31, 29, .60);
+  --text-72: rgba(32, 31, 29, .72);
+  --gold: #B68235;
+  --gold-dark: #7D5411;
+  --gold-deep: #5A3B0A;
+  --line: rgba(32, 31, 29, .16);
+
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Lora", Georgia, serif;
+
+  --edge: clamp(20px, 5vw, 72px);
+  --container: 1200px;
+}
+
+/* ===== Базовое ===== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p { margin: 0; text-wrap: pretty; }
+
+a { color: inherit; }
+
+img { display: block; max-width: 100%; }
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.kicker {
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+
+/* ===== Кнопка CTA ===== */
+.btn {
+  display: inline-block;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.2;
+  padding: 14px 32px;
+  border: 1px solid var(--green);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--green);
+  text-decoration: none;
+  transition: background-color .15s;
+}
+.btn:hover { background: var(--yellow); }
+.btn:active { background: rgba(182, 130, 53, .22); }
+
+/* ===== Шапка ===== */
+.header__inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 28px var(--edge);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__name {
+  margin-right: auto;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--green);
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px clamp(16px, 3vw, 36px);
+}
+.nav a {
+  font-size: 14px;
+  color: var(--text);
+  text-decoration: none;
+  transition: color .15s;
+}
+.nav a:hover { color: var(--gold-dark); }
+
+/* Переключатель языков */
+.lang {
+  display: flex;
+  gap: 2px;
+  margin-left: clamp(8px, 1.5vw, 16px);
+  padding-left: clamp(8px, 1.5vw, 16px);
+  border-left: 1px solid var(--line);
+}
+.lang__btn {
+  font-family: var(--sans);
+  font-size: 14px;
+  letter-spacing: .04em;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  color: var(--text-60);
+  cursor: pointer;
+  transition: background-color .15s;
+}
+.lang__btn:hover { background: var(--pistachio); }
+.lang__btn.is-active {
+  color: var(--green);
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+
+/* ===== Первый экран ===== */
+.hero {
+  margin: 0 var(--edge);
+  padding: clamp(96px, 13vw, 176px) var(--edge) clamp(88px, 12vw, 160px);
+  background: var(--pistachio);
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero__name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(56px, 9vw, 128px);
+  line-height: .98;
+  letter-spacing: -.02em;
+  color: var(--green);
+}
+
+.hero__lead {
+  margin-top: 40px;
+  max-width: 28ch;
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1.3;
+}
+
+.hero__sub {
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-65);
+}
+
+.hero__cta { margin-top: 48px; }
+
+/* ===== Телефон ===== */
+@media (max-width: 600px) {
+  .header__inner {
+    padding: 12px 12px 8px 20px;
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+  .nav { display: none; }
+
+  .lang {
+    gap: 0;
+    margin-left: 0;
+    padding-left: 0;
+    border-left: 0;
+  }
+  .lang__btn {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0 6px;
+  }
+  .lang__btn:hover { background: transparent; }
+  .lang__btn:active { background: var(--pistachio); }
+
+  .hero {
+    margin: 0 12px;
+    padding: 88px 24px 80px;
+  }
+  .hero__name { font-size: 60px; }
+  .hero__lead { margin-top: 32px; font-size: 26px; }
+  /* На телефоне CTA заменяется закреплённой кнопкой внизу */
+  .hero__cta { display: none; }
+}

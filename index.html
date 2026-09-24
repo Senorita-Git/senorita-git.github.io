@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yuliya Verhoglyad</title>
+  <meta name="description" content="Лендинги та сайти-візитки для малого бізнесу за допомогою ШІ">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lora&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Шапка -->
+  <header class="header">
+    <div class="header__inner">
+      <a class="header__name" href="#top">Yuliya Verhoglyad</a>
+      <nav class="nav">
+        <a href="#about" data-i18n="navAbout">Про мене</a>
+        <a href="#skills" data-i18n="navSkills">Що я вмію</a>
+        <a href="#works" data-i18n="navWorks">Проєкти</a>
+        <a href="#contacts" data-i18n="navContacts">Контакти</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" class="lang__btn is-active" data-lang="uk" aria-pressed="true">UA</button>
+        <button type="button" class="lang__btn" data-lang="ru" aria-pressed="false">RU</button>
+        <button type="button" class="lang__btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- Первый экран -->
+    <section class="hero">
+      <h1 class="hero__name">Yuliya<br>Verhoglyad</h1>
+      <p class="hero__lead" data-i18n="heroLead">Ваш бізнес в інтернеті за кілька днів: сторінка, після якої хочеться вам написати</p>
+      <p class="hero__sub" data-i18n="heroSub">Лендинги та сайти-візитки для малого бізнесу за допомогою ШІ</p>
+      <a class="btn hero__cta" href="https://t.me/yuliyaverhoglyad" target="_blank" rel="noopener" data-i18n="cta">Хочу сайт</a>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
