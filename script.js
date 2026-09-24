@@ -7,7 +7,8 @@ const translations = {
     navContacts: 'Контакти',
     heroLead: 'Ваш бізнес в інтернеті за кілька днів: сторінка, після якої хочеться вам написати',
     heroSub: 'Лендинги та сайти-візитки для малого бізнесу за допомогою ШІ',
-    cta: 'Хочу сайт'
+    cta: 'Хочу сайт',
+    aboutText: 'Створюю сайти за допомогою ШІ-інструментів — швидко й під задачу клієнта. Допомагаю від ідеї до публікації в інтернеті.'
   },
   ru: {
     navAbout: 'Обо мне',
@@ -16,7 +17,8 @@ const translations = {
     navContacts: 'Контакты',
     heroLead: 'Ваш бизнес в интернете за несколько дней: страница, после которой хочется вам написать',
     heroSub: 'Лендинги и сайты-визитки для малого бизнеса с помощью ИИ',
-    cta: 'Хочу сайт'
+    cta: 'Хочу сайт',
+    aboutText: 'Создаю сайты с помощью ИИ-инструментов — быстро и под задачу клиента. Помогаю от идеи до публикации в интернете.'
   },
   en: {
     navAbout: 'About',
@@ -25,7 +27,8 @@ const translations = {
     navContacts: 'Contact',
     heroLead: 'Your business online in a few days: a page that makes people want to reach out',
     heroSub: 'Landing pages and business-card websites for small businesses, built with AI',
-    cta: 'I want a website'
+    cta: 'I want a website',
+    aboutText: 'I build websites with AI tools — quickly and around each client\'s goals. I\'ll take you from the first idea to going live.'
   }
 };
 

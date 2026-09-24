@@ -53,6 +53,8 @@ img { display: block; max-width: 100%; }
 .kicker {
   font-family: var(--sans);
   font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--gold-dark);
@@ -176,6 +178,47 @@ img { display: block; max-width: 100%; }
 
 .hero__cta { margin-top: 48px; }
 
+/* ===== Фото в паспарту ===== */
+.photo {
+  margin: 0;
+  border: 6px solid var(--yellow);
+  outline: 1px solid var(--line);
+}
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(.22) saturate(.82) contrast(1.05);
+}
+
+/* ===== Обо мне ===== */
+.about__inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: clamp(96px, 12vw, 168px) var(--edge);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(40px, 7vw, 120px);
+  align-items: center;
+}
+
+.about__photo {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 3 / 4;
+  justify-self: center;
+}
+.about__photo img { object-position: 48% 55%; }
+
+.about__text { max-width: 30ch; }
+
+.about__body {
+  margin-top: 24px;
+  font-family: var(--serif);
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.25;
+}
+
 /* ===== Телефон ===== */
 @media (max-width: 600px) {
   .header__inner {
@@ -207,4 +250,15 @@ img { display: block; max-width: 100%; }
   .hero__lead { margin-top: 32px; font-size: 26px; }
   /* На телефоне CTA заменяется закреплённой кнопкой внизу */
   .hero__cta { display: none; }
+
+  .about__inner {
+    padding: 80px 20px;
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .about__photo {
+    max-width: none;
+    aspect-ratio: 4 / 5;
+  }
+  .about__body { margin-top: 20px; font-size: 28px; }
 }
