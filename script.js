@@ -13,7 +13,8 @@ const translations = {
     skill2: 'Дизайн-макет до початку розробки, щоб ви одразу бачили результат',
     skill3: 'Публікація сайту в інтернеті та підключення домену',
     skill4: 'Приймання заявок із сайту та простий Telegram-бот',
-    workSoon: 'Незабаром тут з\'явиться проєкт'
+    workSoon: 'Незабаром тут з\'явиться проєкт',
+    contactMail: 'Пошта'
   },
   ru: {
     navAbout: 'Обо мне',
@@ -28,7 +29,8 @@ const translations = {
     skill2: 'Дизайн-макет до начала разработки, чтобы вы сразу видели результат',
     skill3: 'Публикация сайта в интернете и подключение домена',
     skill4: 'Приём заявок с сайта и простой Telegram-бот',
-    workSoon: 'Скоро здесь появится проект'
+    workSoon: 'Скоро здесь появится проект',
+    contactMail: 'Почта'
   },
   en: {
     navAbout: 'About',
@@ -43,7 +45,8 @@ const translations = {
     skill2: 'A design mockup before development, so you see the result right away',
     skill3: 'Publishing your site and connecting a domain',
     skill4: 'Collecting leads from your site and a simple Telegram bot',
-    workSoon: 'A project is coming soon'
+    workSoon: 'A project is coming soon',
+    contactMail: 'Email'
   }
 };
 
