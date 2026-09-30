@@ -1,4 +1,6 @@
 .playwright-mcp/
 .DS_Store
+/backup/
 /yulia.jpg
 /images/yulia.jpg
+/node_modules/

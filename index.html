@@ -54,7 +54,7 @@
       <h1 class="hero__name">Yuliya<br>Verhoglyad</h1>
       <p class="hero__lead" data-i18n="heroLead">Ваш бізнес в інтернеті за кілька днів: сторінка, після якої хочеться вам написати</p>
       <p class="hero__sub" data-i18n="heroSub">Лендинги та сайти-візитки для малого бізнесу за допомогою ШІ</p>
-      <a class="btn hero__cta" href="https://t.me/yuliyaverhoglyad" target="_blank" rel="noopener" data-i18n="cta">Хочу сайт</a>
+      <a class="btn hero__cta" href="#lead" data-i18n="cta">Залишити заявку</a>
     </section>
 
     <!-- Обо мне -->
@@ -120,10 +120,71 @@
       </div>
     </section>
 
+    <hr class="divider">
+
+    <!-- Заявка -->
+    <section class="lead" id="lead">
+      <div class="lead__inner">
+        <h2 class="kicker" data-i18n="leadKicker">Заявка</h2>
+        <p class="lead__intro" data-i18n="leadIntro">Розкажіть коротко, що потрібно, — і я відповім вам особисто.</p>
+
+        <form class="form" id="lead-form" novalidate>
+          <div class="form__grid">
+            <div class="field">
+              <label class="field__label" for="lead-name" data-i18n="fieldName">Ім'я</label>
+              <input class="field__input" type="text" id="lead-name" name="name" maxlength="80" autocomplete="name"
+                     aria-describedby="err-name" data-i18n-placeholder="phName" placeholder="Як до вас звертатися">
+              <p class="field__error" id="err-name"></p>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="lead-contact" data-i18n="fieldContact">Як зв'язатися</label>
+              <input class="field__input" type="text" id="lead-contact" name="contact" maxlength="120" autocomplete="tel"
+                     aria-describedby="hint-contact err-contact" data-i18n-placeholder="phContact" placeholder="+380… або @nickname">
+              <p class="field__hint" id="hint-contact" data-i18n="hintContact">Телефон або Telegram — як вам зручніше</p>
+              <p class="field__error" id="err-contact"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="lead-service" data-i18n="fieldService">Що потрібно</label>
+            <select class="field__input field__select" id="lead-service" name="service" aria-describedby="err-service">
+              <option value="" data-i18n="optChoose">Оберіть зі списку</option>
+              <option value="landing" data-i18n="optLanding">Лендинг або сайт-візитка</option>
+              <option value="design" data-i18n="optDesign">Дизайн-макет</option>
+              <option value="publish" data-i18n="optPublish">Публікація та домен</option>
+              <option value="leads" data-i18n="optLeads">Заявки і Telegram-бот</option>
+              <option value="other" data-i18n="optOther">Інше</option>
+            </select>
+            <p class="field__error" id="err-service"></p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="lead-comment">
+              <span data-i18n="fieldComment">Коментар</span>
+              <span class="field__optional" data-i18n="optional">не обов'язково</span>
+            </label>
+            <textarea class="field__input field__textarea" id="lead-comment" name="comment" rows="4" maxlength="1000"
+                      aria-describedby="err-comment" data-i18n-placeholder="phComment" placeholder="Кілька слів про ваш бізнес і задачу"></textarea>
+            <p class="field__error" id="err-comment"></p>
+          </div>
+
+          <!-- Ловушка для спам-ботов: людям не видна и с клавиатуры недоступна -->
+          <div class="form__trap" aria-hidden="true">
+            <label for="lead-company">Company</label>
+            <input type="text" id="lead-company" name="company" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button class="btn form__submit" type="submit" data-i18n="cta">Залишити заявку</button>
+          <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
     <!-- Контакты -->
     <section class="contacts" id="contacts">
       <h2 class="kicker contacts__kicker" data-i18n="navContacts">Контакти</h2>
-      <a class="btn contacts__cta" href="https://t.me/yuliyaverhoglyad" target="_blank" rel="noopener" data-i18n="cta">Хочу сайт</a>
+      <a class="btn contacts__cta" href="#lead" data-i18n="cta">Залишити заявку</a>
       <ul class="contacts__list">
         <li>
           <a class="contact" href="https://t.me/yuliyaverhoglyad" target="_blank" rel="noopener">
@@ -156,7 +217,7 @@
 
   <!-- Закреплённая кнопка (только телефон) -->
   <div class="sticky-cta">
-    <a class="sticky-cta__btn" href="https://t.me/yuliyaverhoglyad" target="_blank" rel="noopener" data-i18n="cta">Хочу сайт</a>
+    <a class="sticky-cta__btn" href="#lead" data-i18n="cta">Залишити заявку</a>
   </div>
 
   <script src="script.js"></script>
