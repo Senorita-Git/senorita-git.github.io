@@ -14,9 +14,13 @@ import pg from 'pg';
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const PORT = process.env.PORT || 3000;
 
-const DATABASE_URL = process.env.DATABASE_URL;
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+// Значения переменных чистим от пробелов: при копировании в панель Railway
+// легко прихватить лишний пробел, и тогда, например, Telegram не найдёт чат.
+const env = (name) => (process.env[name] || '').trim();
+
+const DATABASE_URL = env('DATABASE_URL');
+const TELEGRAM_BOT_TOKEN = env('TELEGRAM_BOT_TOKEN');
+const TELEGRAM_CHAT_ID = env('TELEGRAM_CHAT_ID');
 
 // ===== Раздача файлов сайта =====
 // Список разрешённых файлов, а не запрещённых: так наружу не попадут
