@@ -191,6 +191,37 @@ langButtons.forEach((btn) => {
   btn.addEventListener('click', () => setLang(btn.dataset.lang));
 });
 
+// ===== Аналитика (Google Analytics) =====
+// Счётчик gtag.js подключён в index.html. Если его не удалось загрузить —
+// например, человек пользуется блокировщиком рекламы, — gtag нигде не появится.
+// Эта обёртка в таком случае просто ничего не делает, а не ломает сайт.
+function trackEvent(name, params) {
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', name, params || {});
+  }
+}
+
+// Главная кнопка на первом экране. Она же превращается в прямую ссылку
+// на Telegram на GitHub Pages (см. ниже) — клик считаем в обоих случаях.
+const heroCta = document.querySelector('.hero__cta');
+if (heroCta) {
+  heroCta.addEventListener('click', () => trackEvent('hero_cta_click'));
+}
+
+// Ссылки-контакты внизу страницы: отличаем по адресу, на который они ведут.
+document.querySelectorAll('.contact').forEach((link) => {
+  const href = link.getAttribute('href') || '';
+  if (href.startsWith('https://t.me/')) {
+    link.addEventListener('click', () => trackEvent('contact_telegram_click'));
+  } else if (href.startsWith('mailto:')) {
+    link.addEventListener('click', () => trackEvent('contact_email_click'));
+  } else if (href.startsWith('https://wa.me/') || href.startsWith('https://api.whatsapp.com/')) {
+    // На сайте пока нет ссылки на WhatsApp. Как только она появится —
+    // это событие заработает само, ничего больше менять не нужно.
+    link.addEventListener('click', () => trackEvent('contact_whatsapp_click'));
+  }
+});
+
 // ===== Форма заявки =====
 
 const form = document.getElementById('lead-form');
@@ -324,6 +355,8 @@ if (form && hasServer) {
         form.reset();
         names.forEach((name) => showFieldError(name, null));
         setMessage(status, 'statusOk', 'is-ok');
+        // Событие только при подтверждённом успехе: сервер сохранил заявку
+        trackEvent('lead_form_submit', { service: payload.service, lang: payload.lang });
       } else if (data && data.errors) {
         // Сервер отвечает теми же ключами — переводит их браузер
         Object.keys(data.errors).forEach((name) => {
