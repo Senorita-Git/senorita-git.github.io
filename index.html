@@ -25,19 +25,34 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lora&display=swap&subset=cyrillic" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=4">
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W05ZD5TLJH"></script>
+  <!-- Google Consent Mode v2: по умолчанию ничего не собираем.
+       Сам счётчик (gtag.js) загружается только после согласия — см. script.js -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-W05ZD5TLJH');
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied'
+    });
   </script>
 </head>
 <body>
+
+  <!-- Согласие на аналитику -->
+  <div class="consent" id="consent" aria-label="Cookie consent" hidden>
+    <div class="consent__inner">
+      <p class="consent__title" data-i18n="consentTitle">Файли cookie</p>
+      <p class="consent__text" data-i18n="consentText">Сайт використовує Google Analytics, щоб розуміти, що покращити. Дані збираються лише з вашої згоди.</p>
+      <div class="consent__actions">
+        <button type="button" class="consent__decline" id="consent-decline" data-i18n="consentDecline">Відхилити</button>
+        <button type="button" class="btn consent__accept" id="consent-accept" data-i18n="consentAccept">Прийняти</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Шапка -->
   <header class="header">
@@ -230,6 +245,6 @@
     <a class="sticky-cta__btn" href="#lead" data-i18n="cta">Залишити заявку</a>
   </div>
 
-  <script src="script.js?v=3"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>

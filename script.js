@@ -45,7 +45,12 @@ const translations = {
     statusSending: 'Надсилаю…',
     statusOk: 'Дякую! Заявка надійшла — я відповім вам найближчим часом.',
     statusError: 'Не вдалося надіслати заявку. Спробуйте ще раз або напишіть мені в Telegram.',
-    statusCheck: 'Перевірте, будь ласка, виділені поля.'
+    statusCheck: 'Перевірте, будь ласка, виділені поля.',
+
+    consentTitle: 'Файли cookie',
+    consentText: 'Сайт використовує Google Analytics, щоб розуміти, що покращити. Дані збираються лише з вашої згоди.',
+    consentAccept: 'Прийняти',
+    consentDecline: 'Відхилити'
   },
 
   ru: {
@@ -91,7 +96,12 @@ const translations = {
     statusSending: 'Отправляю…',
     statusOk: 'Спасибо! Заявка пришла — я отвечу вам в ближайшее время.',
     statusError: 'Не удалось отправить заявку. Попробуйте ещё раз или напишите мне в Telegram.',
-    statusCheck: 'Проверьте, пожалуйста, выделенные поля.'
+    statusCheck: 'Проверьте, пожалуйста, выделенные поля.',
+
+    consentTitle: 'Файлы cookie',
+    consentText: 'Сайт использует Google Analytics, чтобы понимать, что улучшить. Данные собираются только с вашего согласия.',
+    consentAccept: 'Принять',
+    consentDecline: 'Отклонить'
   },
 
   en: {
@@ -137,7 +147,12 @@ const translations = {
     statusSending: 'Sending…',
     statusOk: 'Thank you! Your request has arrived — I\'ll reply shortly.',
     statusError: 'The request could not be sent. Please try again or write to me on Telegram.',
-    statusCheck: 'Please check the highlighted fields.'
+    statusCheck: 'Please check the highlighted fields.',
+
+    consentTitle: 'Cookies',
+    consentText: 'This site uses Google Analytics to understand what to improve. Data is only collected with your consent.',
+    consentAccept: 'Accept',
+    consentDecline: 'Decline'
   }
 };
 
@@ -191,10 +206,73 @@ langButtons.forEach((btn) => {
   btn.addEventListener('click', () => setLang(btn.dataset.lang));
 });
 
+// ===== Согласие на аналитику (Google Consent Mode v2) =====
+// В index.html по умолчанию задан отказ (gtag('consent', 'default', {...denied})).
+// Сам файл gtag.js при этом вообще не подключён — счётчик физически не может
+// ничего отправить в Google, пока человек не нажмёт «Прийняти». Это строже,
+// чем просто выставить Consent Mode: обычно gtag.js загружается сразу и шлёт
+// обезличенные «cookieless»-пинги даже при отказе, а здесь до согласия
+// на сервер Google не уходит вообще ничего.
+const GA_ID = 'G-W05ZD5TLJH';
+const CONSENT_KEY = 'yv-consent';
+
+const consentBanner = document.getElementById('consent');
+const consentAcceptBtn = document.getElementById('consent-accept');
+const consentDeclineBtn = document.getElementById('consent-decline');
+
+let gaLoaded = false;
+
+function loadAnalytics() {
+  if (gaLoaded) return;
+  gaLoaded = true;
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+  document.head.appendChild(script);
+  gtag('js', new Date());
+  gtag('config', GA_ID);
+}
+
+function hideConsentBanner() {
+  if (consentBanner) consentBanner.hidden = true;
+}
+
+function saveConsent(value) {
+  try { localStorage.setItem(CONSENT_KEY, value); } catch (e) {}
+}
+
+if (consentAcceptBtn) {
+  consentAcceptBtn.addEventListener('click', () => {
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+    loadAnalytics();
+    saveConsent('granted');
+    hideConsentBanner();
+  });
+}
+
+if (consentDeclineBtn) {
+  consentDeclineBtn.addEventListener('click', () => {
+    // Счётчик и так не загружен — просто запоминаем выбор, чтобы не спрашивать снова
+    saveConsent('denied');
+    hideConsentBanner();
+  });
+}
+
+let storedConsent = null;
+try { storedConsent = localStorage.getItem(CONSENT_KEY); } catch (e) {}
+
+if (storedConsent === 'granted') {
+  gtag('consent', 'update', { analytics_storage: 'granted' });
+  loadAnalytics();
+} else if (storedConsent !== 'denied' && consentBanner) {
+  consentBanner.hidden = false;
+}
+
 // ===== Аналитика (Google Analytics) =====
-// Счётчик gtag.js подключён в index.html. Если его не удалось загрузить —
-// например, человек пользуется блокировщиком рекламы, — gtag нигде не появится.
-// Эта обёртка в таком случае просто ничего не делает, а не ломает сайт.
+// Клики ниже считаются всегда, но это не значит, что данные куда-то уходят:
+// до согласия gtag.js не загружен (см. блок выше), и вызов просто кладёт
+// запись в локальный dataLayer, которую некому читать. Если счётчик
+// заблокирован расширением в браузере — тоже ничего не ломается.
 function trackEvent(name, params) {
   if (typeof window.gtag === 'function') {
     window.gtag('event', name, params || {});

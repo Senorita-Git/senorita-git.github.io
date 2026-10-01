@@ -78,6 +78,71 @@ img { display: block; max-width: 100%; }
 .btn:hover { background: var(--yellow); }
 .btn:active { background: rgba(182, 130, 53, .22); }
 
+/* ===== Согласие на аналитику ===== */
+.consent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--yellow);
+  border-bottom: 1px solid var(--line);
+}
+
+.consent__inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 16px var(--edge);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+}
+
+.consent__title {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--green);
+  flex: 0 0 auto;
+}
+
+.consent__text {
+  margin: 0;
+  flex: 1 1 320px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.consent__actions {
+  display: flex;
+  gap: 12px;
+  flex: 0 0 auto;
+}
+
+.consent__accept {
+  padding: 10px 24px;
+  font-size: 15px;
+}
+
+.consent__decline {
+  padding: 10px 20px;
+  font-family: var(--sans);
+  font-size: 14px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--text-65);
+  cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.consent__decline:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
 /* ===== Шапка ===== */
 .header__inner {
   max-width: var(--container);
@@ -524,6 +589,23 @@ img { display: block; max-width: 100%; }
 
 /* ===== Телефон ===== */
 @media (max-width: 600px) {
+  .consent__inner {
+    padding: 14px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  /* На десктопе flex: 1 1 320px растягивает текст по ширине. В колонке
+     направление то же свойство читает как высоту — без сброса текст
+     раздувался на 320px и закрывал собой всю шапку */
+  .consent__text { flex: 1 1 auto; }
+  .consent__actions { width: 100%; }
+  .consent__accept,
+  .consent__decline {
+    flex: 1;
+    min-height: 44px;
+    text-align: center;
+  }
+
   .header__inner {
     padding: 12px 12px 8px 20px;
     flex-wrap: nowrap;
